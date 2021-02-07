@@ -1,4 +1,4 @@
-//program to calcuate mean , median and mode ,variance standard deviation ,ith percentiles ,Quartiles for grouped data for saving time
+//program to calcuate mean , median and mode ,variance standard deviation for grouped data for saving time
 #include<stdio.h>
 #include<math.h>
 
@@ -12,11 +12,11 @@ int main()
 
  //request class limits
 
- float class_lowerLimits[n];
- float class_upperLimits[n];
+ float class_lowerLimits[n+1];
+ float class_upperLimits[n+1];
 
- float  class_lowerBoundries[n];
- float class_upperBoundries[n];
+ float  class_lowerBoundries[n+1];
+ float class_upperBoundries[n+1];
 
  int frequency[n];
  float classMark[n];
@@ -39,14 +39,6 @@ int main()
 
  float fiXmi2[n];
  float sumfiXmi2 = 0;
-
- float cumulative_percentile[n];
- float percentile;
-
- //float Q1 ,Q2 ,Q3;
- float percentile25;
- float percentile50;
- float percentile75;
  
 
  //enterring class limits
@@ -202,97 +194,7 @@ switch(choice)
    break;
 }
 
-//percentiles for group data
-printf("\n\n");
-int Ipercentile;
-printf("Enter the percentile youwant to find:");
-scanf("%d" ,&Ipercentile);
 
-float lowerclassboundry_percentileclass;
-int frequency_percentileclass;
-int classbefore_percentileclass;
-
-//cumulative percentile
-for(i=0 ;i<n ;i++)
-{
-  cumulative_percentile[i] = (cumulativeFrequency[i]/sumfrequency)*100;
-}
-
-for(i=0 ;i<n ;i++)
-{
-  if(Ipercentile<=cumulative_percentile[i] && Ipercentile>cumulative_percentile[i-1])
-  {
-    lowerclassboundry_percentileclass = class_lowerBoundries[i];
-    frequency_percentileclass = frequency[i];
-    classbefore_percentileclass= cumulativeFrequency[i-1];
-  }
-}
-
-
-percentile = lowerclassboundry_percentileclass +(((sumfrequency/100)*Ipercentile -classbefore_percentileclass)/frequency_percentileclass)*classSize ;
-
-printf("%d th percentile is %.2f \n" ,Ipercentile ,percentile);
-
-
-printf("\n\n");
-//Quartiles
-//Q1
-int percentile_25 = 25;
-float lowerclassboundry_percentileclass_25;
-int frequency_percentileclass_25;
-int classbefore_percentileclass_25;
-
-for(i=0 ;i<n ;i++)
-{
-  if(percentile_25<=cumulative_percentile[i] && percentile_25>cumulative_percentile[i-1])
-  {
-    lowerclassboundry_percentileclass_25 = class_lowerBoundries[i];
-    frequency_percentileclass_25 = frequency[i];
-    classbefore_percentileclass_25= cumulativeFrequency[i-1];
-  }
-}
-
-percentile25 = lowerclassboundry_percentileclass_25 +(((sumfrequency/100)*percentile_25 -classbefore_percentileclass_25)/frequency_percentileclass_25)*classSize ;
-printf("Q1 is %.2f \n",percentile25);
-
-
-//Q2
-int percentile_50 = 50;
-float lowerclassboundry_percentileclass_50;
-int frequency_percentileclass_50;
-int classbefore_percentileclass_50;
-
-for(i=0 ;i<n ;i++)
-{
-  if(percentile_50<=cumulative_percentile[i] && percentile_50>cumulative_percentile[i-1])
-  {
-    lowerclassboundry_percentileclass_50 = class_lowerBoundries[i];
-    frequency_percentileclass_50 = frequency[i];
-    classbefore_percentileclass_50= cumulativeFrequency[i-1];
-  }
-}
-
-percentile50 = lowerclassboundry_percentileclass_50 +(((sumfrequency/100)*percentile_50 -classbefore_percentileclass_50)/frequency_percentileclass_50)*classSize ;
-printf("Q2 is %.2f \n",percentile50);
-
-//Q3
-int percentile_75 = 75;
-float lowerclassboundry_percentileclass_75;
-int frequency_percentileclass_75;
-int classbefore_percentileclass_75;
-
-for(i=0 ;i<n ;i++)
-{
-  if(percentile_75<=cumulative_percentile[i] && percentile_75>cumulative_percentile[i-1])
-  {
-    lowerclassboundry_percentileclass_75 = class_lowerBoundries[i];
-    frequency_percentileclass_75 = frequency[i];
-    classbefore_percentileclass_75= cumulativeFrequency[i-1];
-  }
-}
-
-percentile75 = lowerclassboundry_percentileclass_75 +(((sumfrequency/100)*percentile_75 -classbefore_percentileclass_75)/frequency_percentileclass_75)*classSize ;
-printf("Q3 is %.2f \n",percentile75);
 
 
 
